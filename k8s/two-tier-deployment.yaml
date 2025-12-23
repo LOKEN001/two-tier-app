@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: two-tier-deployment
+    labels:
+       app: two-tier-server
+spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: two-tier-server
+    template:
+      metadata:
+        labels:
+           app: two-tier-server
+      spec:
+         containers:
+           - name: two-tier-server
+             image: master101/myapp:latest
+             env:
+                - name: MYSQL_HOST
+                  value: "10.97.77.47"
+                - name: MYSQL_USER
+                  value: "admin"
+                - name: MYSQL_PASSWORD
+                  value: "admin"
+                - name: MYSQL_DB
+                  value: "mydb"
+             ports:
+                - containerPort: 5000
+             imagePullPolicy: Always
+

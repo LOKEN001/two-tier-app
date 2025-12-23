@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: sql-deployment
+    labels:
+       app: sql-server
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: sql-server
+    template:
+      metadata:
+        labels:
+           app: sql-server
+      spec:
+         containers:
+           - name: sql-server
+             image: mysql:latest
+             env:
+                - name: MYSQL_ROOT_PASSWORD
+                  value: admin
+                - name: MYSQL_USER
+                  value: admin    
+                - name: MYSQL_PASSWORD
+                  value: admin
+                - name: MYSQL_DATABASE
+                  value: mydb
+             ports:
+                - containerPort: 3306
+             imagePullPolicy: Always
+             volumeMounts:
+                - name: mysqldata
+                  mountPath: /var/lib/mysql 
+         volumes:
+           - name: mysqldata
+             persistentVolumeClaim:
+                claimName: sql-pvc 
+                  
