@@ -19,13 +19,13 @@ spec:
              image: mysql:latest
              env:
                 - name: MYSQL_ROOT_PASSWORD
-                  value: admin
+                  value: "admin"
                 - name: MYSQL_USER
-                  value: admin    
+                  value: "admin"    
                 - name: MYSQL_PASSWORD
-                  value: admin
+                  value: "admin"
                 - name: MYSQL_DATABASE
-                  value: mydb
+                  value: "mydb"
              ports:
                 - containerPort: 3306
              imagePullPolicy: Always

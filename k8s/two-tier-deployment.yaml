@@ -19,7 +19,7 @@ spec:
              image: master101/myapp:latest
              env:
                 - name: MYSQL_HOST
-                  value: "10.97.77.47"
+                  value: "10.100.62.180"
                 - name: MYSQL_USER
                   value: "admin"
                 - name: MYSQL_PASSWORD
